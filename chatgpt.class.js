@@ -2,7 +2,7 @@ const { CoreClass } = require('@bot-whatsapp/bot')
 
 class ChatGPTClass extends CoreClass {
     queue = [];
-    optionsGPT = { model: "text-davinci-003"};
+    optionsGPT = { model: "gpt-3.5-turbo"};
     openai = undefined;
     constructor(_database, _provider, _optionsGPT = {}) {
         super(null, _database, _provider);
