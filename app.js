@@ -1,11 +1,13 @@
 const { createBot, createProvider, createFlow, addKeyword } = require('@bot-whatsapp/bot')
+require('dotenv').config()
 
 const QRPortalWeb = require('@bot-whatsapp/portal')
 const BaileysProvider = require('@bot-whatsapp/provider/baileys')
 const MockAdapter = require('@bot-whatsapp/database/mock')
+const ChatGPTClass = require('./chatgpt.class')
 
-const flowPrincipal = addKeyword(['hola', 'ole', 'alo'])
-    .addAnswer('Hola')
+/* const flowPrincipal = addKeyword(['hola', 'ole', 'alo'])
+    .addAnswer('Hola!')
 
 const flowHorarios = addKeyword(['horario', 'Horarios'])
     .addAnswer([
@@ -18,16 +20,36 @@ const flowHorarios = addKeyword(['horario', 'Horarios'])
         'Domingo: Obvio que libre...'
     ])
 
+const flowHowAreU = addKeyword(['como estás', 'como estas?', 'cmo stas?', 'como andamos?'])
+.addAnswer('Bien! y vos?')
+
+const flowHowAreU2 = addKeyword(['todo bien?'])
+.addAnswer('Todo bien, vos?')
+
+const flowHowAreU3 = addKeyword(['todo tranqui?'])
+.addAnswer('Todo tranqui, y vos?')
+ */
+
+const createBotGPT = async ({provider, database }) => {
+    return new ChatGPTClass(database, provider)
+} 
+
 const main = async () => {
     const adapterDB = new MockAdapter()
-    const adapterFlow = createFlow([flowPrincipal, flowHorarios])
+    const adapterFlow = createFlow([])
     const adapterProvider = createProvider(BaileysProvider)
 
-    createBot({
+    createBotGPT({
         flow: adapterFlow,
         provider: adapterProvider,
         database: adapterDB,
     })
+
+    /* createBot({
+        flow: adapterFlow,
+        provider: adapterProvider,
+        database: adapterDB,
+    }) */
 
     QRPortalWeb()
 }
