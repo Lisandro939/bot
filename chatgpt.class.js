@@ -1,4 +1,5 @@
 const { CoreClass } = require('@bot-whatsapp/bot')
+require('dotenv').config()
 
 class ChatGPTClass extends CoreClass {
     queue = [];
@@ -12,7 +13,7 @@ class ChatGPTClass extends CoreClass {
     init = async () => {
         const { ChatGPTAPI } = await import('chatgpt');
         this.openai = new ChatGPTAPI({
-            apiKey: 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,
+            apiKey: process.env.API_KEY,
         });
     };
 
