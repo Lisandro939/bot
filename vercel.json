@@ -12,11 +12,6 @@
       "dest": "main.js"
     }
   ],
-  "functions": {
-    "main.js": {
-      "maxDuration": 30
-    }
-  },
   "env": {
     "NODE_ENV": "production"
   }
