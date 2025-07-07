@@ -1,4 +1,55 @@
-node_modules
+# Logs
+logs
 *.log
-*.png
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# WhatsApp Web Auth
+.wwebjs_auth/
+.wwebjs_cache/
+
+# Environment variables
 .env
+.env.local
+.env.production.local
+.env.test.local
+
+# Vercel
+.vercel
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# Temp folders
+tmp/
+temp/

@@ -1,22 +1,106 @@
-### CHATBOT Whatsapp (Baileys Provider)
+# WhatsApp Bot para Vercel
 
-<p align="center">
-  <img width="300" src="https://i.imgur.com/Oauef6t.png">
-</p>
+Este es un bot de WhatsApp que se puede desplegar en Vercel con endpoints REST API.
 
+## Características
 
-**Con esta librería, puedes construir flujos automatizados de conversación de manera agnóstica al proveedor de WhatsApp,** configurar respuestas automatizadas para preguntas frecuentes, recibir y responder mensajes de manera automatizada, y hacer un seguimiento de las interacciones con los clientes.  Además, puedes configurar fácilmente disparadores que te ayudaran a expandir las funcionalidades sin límites. **[Ver documentación](https://bot-whatsapp.netlify.app/)**
+- 📱 Conexión con WhatsApp Web
+- 🚀 API REST para enviar mensajes
+- 🔄 Endpoints para gestionar la sesión
+- 🌐 Listo para desplegar en Vercel
 
+## Endpoints disponibles
 
+### GET /status
+Verifica el estado del cliente de WhatsApp
+```json
+{
+  "ready": true,
+  "message": "Cliente listo"
+}
 ```
+
+### POST /send-message
+Envía un mensaje a un número específico
+```json
+{
+  "number": "1234567890",
+  "message": "¡Hola desde el bot!"
+}
+```
+
+### POST /logout
+Cierra la sesión actual y regenera el QR
+```json
+{
+  "success": true,
+  "message": "Sesión cerrada. Se regenerará el QR automáticamente."
+}
+```
+
+### POST /restart
+Reinicia el cliente completamente
+```json
+{
+  "success": true,
+  "message": "Cliente reiniciado. Espera unos segundos para el nuevo QR."
+}
+```
+
+## Instalación local
+
+1. Clona el repositorio
+2. Instala las dependencias:
+```bash
 npm install
+```
+
+3. Ejecuta el bot:
+```bash
 npm start
 ```
 
----
-## Recursos
-- [📄 Documentación](https://bot-whatsapp.netlify.app/)
-- [🚀 Roadmap](https://github.com/orgs/codigoencasa/projects/1)
-- [💻 Discord](https://link.codigoencasa.com/DISCORD)
-- [👌 Twitter](https://twitter.com/leifermendez)
-- [🎥 Youtube](https://www.youtube.com/watch?v=5lEMCeWEJ8o&list=PL_WGMLcL4jzWPhdhcUyhbFU6bC0oJd2BR)
+4. Escanea el código QR que aparece en la consola
+
+## Despliegue en Vercel
+
+1. Haz fork de este repositorio
+2. Conecta tu repositorio a Vercel
+3. Despliega automáticamente
+
+### Variables de entorno (opcional)
+
+- `PORT`: Puerto del servidor (por defecto 3000)
+- `NODE_ENV`: Entorno de ejecución
+
+## Uso
+
+### Ejemplo con curl:
+```bash
+# Verificar estado
+curl https://tu-bot.vercel.app/status
+
+# Enviar mensaje
+curl -X POST https://tu-bot.vercel.app/send-message \
+  -H "Content-Type: application/json" \
+  -d '{"number": "1234567890", "message": "¡Hola desde Vercel!"}'
+
+# Reiniciar cliente
+curl -X POST https://tu-bot.vercel.app/restart
+```
+
+## Consideraciones importantes
+
+⚠️ **Importante**: Este bot requiere una conexión persistente para mantener la sesión de WhatsApp. Vercel es una plataforma serverless, por lo que:
+
+- La sesión se perderá entre llamadas
+- Necesitarás reautenticarte frecuentemente
+- Para uso en producción, considera usar una plataforma con servidores persistentes
+
+## Tecnologías utilizadas
+
+- Node.js
+- Express.js
+- whatsapp-web.js
+- qrcode-terminal
+- Vercel (deployment)
