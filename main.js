@@ -203,6 +203,8 @@ app.get('/qr-image', (req, res) => {
     res.send(buffer);
 });
 
+const wwebVersion = '2.2412.54'; 
+
 const client = new Client({
 	authStrategy: new LocalAuth({
 		clientId: "client-one"
