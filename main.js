@@ -299,8 +299,15 @@ app.post('/send-message', async (req, res) => {
 
         // Enviar el mensaje
         if (!!numberDetails) {
-            const response = await client.sendMessage(numberDetails._serialized, message);
-            console.log(`📬 Respuesta del envío: ${JSON.stringify(response)}`);
+            try {
+                const response = await client.sendMessage(numberDetails._serialized, message);
+                console.log(`📬 Respuesta del envío: ${JSON.stringify(response)}`);
+            } catch (error) {
+                console.log(`❌ Error al enviar mensaje a ${formattedNumber}:`, error);
+                return res.status(500).json({
+                    error: 'Error al enviar el mensaje',
+                });
+            }
         }
         
         res.json({ 
