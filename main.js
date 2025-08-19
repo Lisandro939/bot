@@ -8,6 +8,7 @@ const express = require("express");
 
 const app = express();
 const PORT = process.env.PORT || 3002;
+const API_URL = "https://deliveries-lavalle-api-production.up.railway.app/api"
 
 // Middleware para parsear JSON
 app.use(express.json());
@@ -321,7 +322,7 @@ client.on("message", async (message) => {
 
 			try {
 				// Hacer fetch POST a la API solo cuando se reciba el mensaje específico
-				const response = await fetch(`${process.env.API_URL}/ownership/request-by-phone`, {
+				const response = await fetch(`${API_URL}/ownership/request-by-phone`, {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
