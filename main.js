@@ -295,6 +295,9 @@ client.on("loading_screen", (percent, message) => {
 
 // Manejar mensajes entrantes
 client.on("message", async (message) => {
+
+    console.log("📩 Nuevo mensaje recibido:", message.body);
+
 	try {
 		// Solo procesar mensajes de tipo text
 		if (message.type !== "chat") {
