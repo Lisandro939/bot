@@ -214,18 +214,12 @@ app.get("/qr-image", (req, res) => {
   res.send(buffer);
 });
 
-const wwebVersion = "2.2412.54";
-
 const client = new Client({
   authStrategy: new LocalAuth({
     clientId: "client-one",
   }),
   puppeteer: {
     args: ["--no-sandbox"],
-  },
-  webVersionCache: {
-    type: "remote",
-    remotePath: `https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/${wwebVersion}.html`,
   },
 });
 
@@ -415,7 +409,8 @@ app.post("/send-message", async (req, res) => {
       try {
         const response = await client.sendMessage(
           numberDetails._serialized,
-          message
+          message,
+          { sendSeen: false }
         );
         console.log(`📬 Respuesta del envío: ${JSON.stringify(response)}`);
       } catch (error) {
